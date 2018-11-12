@@ -15,6 +15,11 @@ const resolvers = {
         },
         profesorEdit: (_, args) => {
             return Profesor.query().patchAndFetchById(args.idProfesor, args.profesor)
+        },
+        profesorRemove: async (_, args) => {
+            const ProfesorDeleted = await Profesor.query().findById(args.idProfesor)
+            await Profesor.query().deleteById(args.idProfesor)
+            return ProfesorDeleted
         }
     }
 }
