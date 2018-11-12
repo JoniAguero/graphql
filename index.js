@@ -12,7 +12,9 @@ const Profesor = require('./models/Profesor')
 const resolvers = {
     Query: {
         cursos: () => Curso.query(),
-        profesores: () => Profesor.query()
+        profesores: () => Profesor.query(),
+        curso: (rootValue, args) => Curso.query().findById(args.id),
+        profesor: (rootValue, args) => Curso.query().findById(args.id)
     },
    
 }
