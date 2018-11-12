@@ -14,6 +14,11 @@ const rootQuery = gql`
         curso(id: Int): Curso
         profesor(id: Int): Profesor
     }
+
+    """Mutations"""
+    type Mutation {
+        profesorAdd(profesor: NewProfesor): Profesor
+    }
 `
 const schema = makeExecutableSchema({
     typeDefs: [rootQuery, Curso, Profesor],
