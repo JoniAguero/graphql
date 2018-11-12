@@ -3,21 +3,8 @@ const { ApolloServer } = require('apollo-server-express')
 
 // construye un schema, usando GraphQL
 const typeDefs = require('./schema')
+const resolvers = require('./resolvers')
 require('./db/setup')
-
-const Curso = require('./models/Curso')
-const Profesor = require('./models/Profesor')
-
-// provee resolvers para nuestro esquema
-const resolvers = {
-    Query: {
-        cursos: () => Curso.query().eager('[profesor, comentarios]'),
-        profesores: () => Profesor.query().eager('cursos'),
-        curso: (rootValue, args) => Curso.query().eager('[profesor, comentarios]').findById(args.id),
-        profesor: (rootValue, args) => Profesor.query().eager('cursos').findById(args.id)
-    },
-   
-}
 
 // inicializar apollo server
 const server = new ApolloServer({
