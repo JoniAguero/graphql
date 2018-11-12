@@ -19,7 +19,12 @@ const resolvers = {
         profesorRemove: async (_, args) => {
             const ProfesorDeleted = await Profesor.query().findById(args.idProfesor)
             await Profesor.query().deleteById(args.idProfesor)
-            return ProfesorDeleted
+            if (ProfesorDeleted) {
+                return ProfesorDeleted
+            } else {
+                throw new Error(`El profesor con id: ${args.idProfesor} no existe`)
+            }
+
         }
     }
 }
