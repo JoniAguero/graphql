@@ -11,7 +11,7 @@ const Profesor = require('./models/Profesor')
 // provee resolvers para nuestro esquema
 const resolvers = {
     Query: {
-        cursos: () => Curso.query(),
+        cursos: () => Curso.query().eager('profesor'),
         profesores: () => Profesor.query(),
         curso: (rootValue, args) => Curso.query().findById(args.id),
         profesor: (rootValue, args) => Curso.query().findById(args.id)
