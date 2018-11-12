@@ -2,14 +2,13 @@ const express = require('express')
 const { ApolloServer } = require('apollo-server-express')
 
 // construye un schema, usando GraphQL
-const typeDefs = require('./schema')
-const resolvers = require('./resolvers')
+const schema = require('./schema')
+
 require('./db/setup')
 
 // inicializar apollo server
 const server = new ApolloServer({
-    typeDefs,
-    resolvers
+    schema
 })
 
 // inicializar express

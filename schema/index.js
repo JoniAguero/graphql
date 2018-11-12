@@ -1,38 +1,13 @@
 const { gql } = require('apollo-server-express')
+const { makeExecutableSchema } = require('graphql-tools');
+const Curso = require('./Curso');
+const Profesor = require('./Profesor');
 
-const typeDefs = gql`
+const resolvers = require('../resolvers')
 
-    """Esto es un curso en el sistema"""
-    type Curso {
-        id: ID!
-        titulo: String!
-        """Esta es la descripción del curso"""
-        descripcion: String!
-        profesor: Profesor
-        rating: Float
-        comentarios: [Comentario]
-    }
+const rootQuery = gql`
 
-    type Profesor{
-        id: ID!
-        nombre: String!
-        nacionalidad: String!
-        genero: Genero
-        cursos: [Curso]
-    }
-
-    enum Genero{
-        MASCULINO
-        FEMENINO
-    }
-
-    type Comentario{
-        id: ID!
-        nombre: String!
-        cuerpo: String!
-    }
-
-    """Estos son los endpoints"""
+    """EndPoints"""
     type Query{
         cursos: [Curso]
         profesores: [Profesor]
@@ -40,5 +15,9 @@ const typeDefs = gql`
         profesor(id: Int): Profesor
     }
 `
+const schema = makeExecutableSchema({
+    typeDefs: [rootQuery, Curso, Profesor],
+    resolvers
+})
 
-module.exports = typeDefs
+module.exports = schema
