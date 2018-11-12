@@ -17,7 +17,8 @@ const rootQuery = gql`
 
     """Mutations"""
     type Mutation {
-        profesorAdd(profesor: NewProfesor): Profesor
+        profesorAdd(profesor: newProfesor): Profesor
+        profesorEdit(idProfesor: Int!, profesor: editProfesor): Profesor
     }
 `
 const schema = makeExecutableSchema({
