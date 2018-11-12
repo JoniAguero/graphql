@@ -7,7 +7,38 @@ const typeDefs = require('./schema')
 // provee resolvers para nuestro esquema
 const resolvers = {
     Query: {
-        cursos: () => []
+        cursos: () => {
+            return [{
+                id: 1,
+                titulo: 'Curso de Prueba',
+                descripcion: 'Prueba exitosa'
+            },
+            {
+                id: 2,
+                titulo: 'Curso de Prueba 2',
+                descripcion: 'Prueba exitosa 2'
+            }]
+        }
+    },
+    Curso: {
+        profesor: () => {
+            return {
+                nombre: 'joni'
+            }
+        },
+        comentarios: () => {
+            return [{
+                    id: 1,
+                    nombre: 'luisj135',
+                    cuerpo: 'testing GraphQl'
+                },
+                {
+                    id: 2,
+                    nombre: 'Platzi',
+                    cuerpo: 'testing Platzi GraphQl'
+                }
+            ]
+        }
     }
 }
 

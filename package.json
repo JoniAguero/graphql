@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:migrate": "knex migrate:latest --knexfile=db/knexfile.js",
+    "db:seed": "knex seed:run --knexfile=db/knexfile.js"
   },
   "author": "JoniAguero",
   "license": "MIT",
@@ -13,9 +15,13 @@
     "apollo-server": "^2.2.0",
     "apollo-server-express": "^2.2.0",
     "body-parser": "^1.18.3",
+    "casual": "^1.5.19",
     "express": "^4.16.4",
     "graphql": "^14.0.2",
-    "graphql-tools": "^4.0.3"
+    "graphql-tools": "^4.0.3",
+    "knex": "^0.15.2",
+    "objection": "^1.4.0",
+    "sqlite3": "^4.0.4"
   },
   "devDependencies": {
     "nodemon": "^1.18.6"
